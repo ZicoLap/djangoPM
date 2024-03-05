@@ -6,7 +6,7 @@
     <ul>
         {% for project in project_list %}
         <li>
-            {{ project.title }}
+            {{ project.title }} <a href={% url "project_update" project.id %}>Edit</a>
         </li>
             {% empty %}
             <li> {% trans 'THERE IS NO PROJECTS TO SHOW' %}</li>
