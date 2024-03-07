@@ -2,8 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from accounts import models
-from projects.models import Project, Task
+from models import Project, Task
 from . import forms
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
@@ -53,7 +52,8 @@ class TaskCreateView(LoginRequiredMixin, UserPassesTestMixin,CreateView):
 
     def test_func(self):
         project_id = self.request.POST.get('project', '')
-        return models.Project.objects.get(pk=project_id).user_id == self.request.user.id
+        return Project.objects.get(pk=project_id).user_id == self.request.user.id
+
 
     def get_success_url(self):
         return reverse_lazy('project_update', args=[self.object.project.id])
