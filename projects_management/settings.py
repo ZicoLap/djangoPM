@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,10 @@ SECRET_KEY = 'django-insecure-d1r6z&#d_#&=nb-hk+#3e1vf^pt%!^*f$gair(_zy97m^(tz11
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'djangopm-867d4f791766.herokuapp.com',
+    'localhost'
+]
 
 
 # Application definition
@@ -45,6 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -81,11 +86,11 @@ WSGI_APPLICATION = 'projects_management.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'djangoPM',
-        'USER': 'postgres',
-        'PASSWORD': '0907023545',
-        'HOST': 'localhost',
-        'PORT': ''
+        'NAME': 'd72gvj6fcl0ka8',
+        'USER': 'ufm5lrou9ehsgb',
+        'PASSWORD': 'p4e31c1a49d53d5699aada4e72f7de5b60134449c9b67836ac36c10648e842649',
+        'HOST': 'ceu9lmqblp8t3q.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
@@ -125,6 +130,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
